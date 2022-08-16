@@ -15,7 +15,8 @@ django-treebeard==4.5.1
 djangorestframework==3.13.1
 draftjs-exporter==2.1.7
 et-xmlfile==1.1.0
-google-play-scraper-dmi @ git+https://github.com/digitalmethodsinitiative/google-play-scraper.git@17ff405c2cb7742781fbfda00bb15c4390924d05
+google-play-scraper-dmi==0.9.15
+gunicorn==20.1.0
 html5lib==1.1
 idna==3.3
 l18n==2021.3
