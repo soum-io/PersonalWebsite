@@ -1,0 +1,263 @@
+{% extends "landing/base.html" %}
+{% block content %}
+{% load static %}
+
+<!-- Video Modal Start -->
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <!-- 16:9 aspect ratio -->
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Video Modal End -->
+
+
+<!-- Header Start -->
+<div class="container-fluid bg-primary d-flex align-items-center mb-5 py-5" id="home" style="min-height: 100vh;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5 px-5 pl-lg-0 pb-5 pb-lg-0">
+                <img class="img-fluid w-100 rounded-circle shadow-sm" src="{% static 'img/nature.jpeg' %}" alt="">
+            </div>
+            <div class="col-lg-7 text-center text-lg-left">
+                <h3 class="text-white font-weight-normal mb-3">I'm</h3>
+                <h1 class="display-3 text-uppercase text-primary mb-2" style="-webkit-text-stroke: 2px #ffffff;">Michael Shea</h1>
+                <h1 class="typed-text-output d-inline font-weight-lighter text-white"></h1>
+                <div class="typed-text d-none">Technology Video Creator, App Developer, Open Source Contributor, Software Engineer</div>
+                <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
+                    <div class="d-flex justify-content-center mb-4">
+                        <a class="btn btn-light btn-social mr-2" href="https://www.youtube.com/channel/UC6qsb94FpS0rd5HzWjJPozg"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-light btn-social mr-2" href="https://play.google.com/store/apps/developer?id=Soumio"><i class="fab fa-android"></i></a>
+                        <a class="btn btn-light btn-social mr-2" href="https://github.com/soum-io"><i class="fab fa-github"></i></a>
+                        <a class="btn btn-light btn-social mr-2" href="https://www.linkedin.com/in/michael-shea-205298105/"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+
+ <!-- Portfolio Start -->
+<div class="container-fluid pt-5 pb-3" id="portfolio">
+    <div class="container">
+        <div class="position-relative d-flex align-items-center justify-content-center">
+            <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Gallery</h1>
+            <h1 class="position-absolute text-uppercase text-primary">My Portfolio</h1>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center mb-2">
+                <ul class="list-inline mb-4" id="portfolio-flters">
+                    <li class="btn btn-sm btn-outline-primary m-1 active"  data-filter="*">All</li>
+                    <li class="btn btn-sm btn-outline-primary m-1" data-filter=".first">Videos</li>
+                    <li class="btn btn-sm btn-outline-primary m-1" data-filter=".second">Apps</li>
+                    <li class="btn btn-sm btn-outline-primary m-1" data-filter=".third">Open Source</li>
+                    <li class="btn btn-sm btn-outline-primary m-1" data-filter=".fourth">Projects</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row portfolio-container">
+            <!-- videos -->
+            {% for video_name, video_info in videos_info.items %}
+                <div class="col-md-6 col-lg-4 mb-4 portfolio-item first">
+                    <div class="gallery-item">
+                        <figure class="effect-soumio">
+                            <a href="{% url 'video-detail' video_id=video_info.id %}" target="_blank">
+                                <img class="card-img-top project-img" style="width-400" src="{{video_info.img}}" alt="">
+                                <div>View</div>
+                            </a>
+                        </figure>
+                        <div class="card-body mt-1">
+                            <h5 class="card-title text-center">{{ video_name | title }}</h5>
+                            <p class="text-center text-secondary">
+                                <i>Video</i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <!-- apps -->
+            {% for name, info in apps_info.items %}
+                <div class="col-md-6 col-lg-4 mb-4 portfolio-item second">
+                     {% include "landing/portfolio_item.html" %}
+                </div>
+            {% endfor %}
+            <!-- open source -->
+            {% for name, info in open_source_info.items %}
+                <div class="col-md-6 col-lg-4 mb-4 portfolio-item third">
+                    {% include "landing/portfolio_item.html" %}
+                </div>
+            {% endfor %}
+            <!-- projects -->
+            {% for name, info in projects_info.items %}
+                <div class="col-md-6 col-lg-4 mb-4 portfolio-item fourth">
+                    {% include "landing/portfolio_item.html" %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Portfolio End -->
+
+<!-- About Start -->
+<div class="container-fluid py-5" id="about">
+    <div class="container">
+        <div class="position-relative d-flex align-items-center justify-content-center">
+            <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">About</h1>
+            <h1 class="position-absolute text-uppercase text-primary">About Me</h1>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-lg-5 pb-4 pb-lg-0">
+                <img class="img-fluid rounded w-100" src="{% static 'img/professional.jpeg' %}" alt="">
+            </div>
+            <div class="col-lg-7">
+                <h3 class="mb-4">Software Engineer & Technology Enthusiast</h3>
+                <p>I currently work full time as a software engineer at a high frequency trading company in Chicago. During my free time, I enjoy making videos, contributing to open source, learning languages (Telugu), playing basketball, and traveling.</p>
+                <div class="row mb-3">
+                    <div class="col-sm-6 py-2"><h6>Name: <span class="text-secondary">Michael Shea</span></h6></div>
+                    <div class="col-sm-6 py-2"><h6>Birthday: <span class="text-secondary">3 April 1997</span></h6></div>
+                    <div class="col-sm-6 py-2"><h6>Degree: <span class="text-secondary">B.S in Computer Science</span></h6></div>
+                    <div class="col-sm-6 py-2"><h6>Experience: <span class="text-secondary">5 years</span></h6></div>
+                    <div class="col-sm-6 py-2"><h6>Email: <span class="text-secondary">soumiodevelopment@gmail.com</span></h6></div>
+                    <div class="col-sm-6 py-2"><h6>Location: <span class="text-secondary">Chicago, IL 60661</span></h6></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+
+<!-- Qualification Start -->
+<div class="container-fluid py-5" id="qualification">
+    <div class="container">
+        <div class="position-relative d-flex align-items-center justify-content-center">
+            <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Quality</h1>
+            <h1 class="position-absolute text-uppercase text-primary">Education & Expericence</h1>
+        </div>
+        <div class="row align-items-start">
+            <div class="col-lg-6">
+                <h3 class="mb-4">My Education</h3>
+                <div class="border-left border-primary pt-2 pl-4 ml-2">
+                    <div class="position-relative mb-4">
+                        <i class="far fa-dot-circle text-primary position-absolute" style="top: 2px; left: -32px;"></i>
+                        <h5 class="font-weight-bold mb-1">Bachelors In Computer Science</h5>
+                        <p class="mb-2"><strong>University of Illinois at Urbana-Champaign</strong> | <small>2015 - 2019</small></p>
+                        <p>I studied Mechanical Engineering for 5 semesters, and then switched to Computer Science for my final 3 semesters.</p>
+                    </div>
+                    <div class="position-relative mb-4">
+                        <i class="far fa-dot-circle text-primary position-absolute" style="top: 2px; left: -32px;"></i>
+                        <h5 class="font-weight-bold mb-1">High School Diploma</h5>
+                        <p class="mb-2"><strong>Lyons Township High School</strong> | <small>2011 - 2015</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h3 class="mb-4">My Software Experiences</h3>
+                <div class="border-left border-primary pt-2 pl-4 ml-2">
+                    <div class="position-relative mb-4">
+                        <i class="far fa-dot-circle text-primary position-absolute" style="top: 2px; left: -32px;"></i>
+                        <h5 class="font-weight-bold mb-1">Software Developer</h5>
+                        <p class="mb-2"><strong>IMC Trading</strong> | <small>2020 - Present</small></p>
+                    </div>
+                    <div class="position-relative mb-4">
+                        <i class="far fa-dot-circle text-primary position-absolute" style="top: 2px; left: -32px;"></i>
+                        <h5 class="font-weight-bold mb-1">Software Engineering Intern</h5>
+                        <p class="mb-2"><strong>Microsoft</strong> | <small>Summer 2019</small></p>
+                        <p>The internship program at Microsoft was an amazing experience, and the company environment allowed for an incredible amount of both consuming and producing material. I worked on their Service Fabric team, which is an Azure microservices offering that includes both stateful and stateless services.</p>
+                    </div>
+                    <div class="position-relative mb-4">
+                        <i class="far fa-dot-circle text-primary position-absolute" style="top: 2px; left: -32px;"></i>
+                        <h5 class="font-weight-bold mb-1">Machine Learning Software Intern</h5>
+                        <p class="mb-2"><strong>CA Technologies</strong> | <small>Summer 2018</small></p>
+                        <p>CA Technologies is one of the the top 10 biggest software companies in the world, and specializes in software as a service (SaaS) and mainframe software. I worked on their machine learning team for a product called Data Content Discovery, which searches a customer's mainframe databases to see if there is any sensitive information that should be removed in order to comply with privacy laws.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Qualification End -->
+
+
+<!-- Skill Start -->
+<div class="container-fluid py-5" id="skill">
+    <div class="container">
+        <div class="position-relative d-flex align-items-center justify-content-center">
+            <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Skills</h1>
+            <h1 class="position-absolute text-uppercase text-primary">My Skills</h1>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="skill mb-4">
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-bold">Java</h6>
+                        <h6 class="font-weight-bold">95%</h6>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="skill mb-4">
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-bold">C#</h6>
+                        <h6 class="font-weight-bold">70%</h6>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="skill mb-4">
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-bold">HTML & CSS</h6>
+                        <h6 class="font-weight-bold">60%</h6>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="skill mb-4">
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-bold">Python</h6>
+                        <h6 class="font-weight-bold">90%</h6>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="skill mb-4">
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-bold">C++</h6>
+                        <h6 class="font-weight-bold">75%</h6>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="skill mb-4">
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-bold">Javascript</h6>
+                        <h6 class="font-weight-bold">75%</h6>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Skill End -->
+
+{% endblock content %}
