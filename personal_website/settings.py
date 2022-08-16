@@ -26,6 +26,7 @@ SECRET_KEY = os.environ.get('PERSONAL_WEBSITE_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'soumio.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1', 'https://soumio.herokuapp.com']
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
