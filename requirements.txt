@@ -36,6 +36,7 @@ telepath==0.2
 urllib3==1.26.11
 wagtail==3.0.1
 webencodings==0.5.1
+whitenoise==6.2.0
 Willow==1.4.1
 wrapt==1.14.1
 xlrd==2.0.1
