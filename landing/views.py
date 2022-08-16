@@ -8,7 +8,6 @@ from urllib.request import urlopen
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.views.decorators.csrf import ensure_csrf_cookie
 from github import Github
 from google_play_scraper.scraper import PlayStoreScraper
 from google_play_scraper.util import PlayStoreException
@@ -31,7 +30,6 @@ def home(request):
                                                  'projects_info': PROJECTS_INFO})
 
 
-@ensure_csrf_cookie
 def contact(request):
     if request.method == 'POST':
         name = request.POST['name']

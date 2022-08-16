@@ -38,7 +38,6 @@ $(function () {
                     email: email,
                     subject: subject,
                     message: message,
-                    credentials: 'include',
                     csrfmiddlewaretoken: getCookie('csrftoken')
                 },
                 cache: false,
