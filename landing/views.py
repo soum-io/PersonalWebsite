@@ -63,6 +63,7 @@ def video_detail(request, video_id):
                                                          'video_url': video_url,
                                                          'title': title})
 
+
 def check_if_project_info_update_required():
     global VIDEOS_INFO, APPS_INFO, OPEN_SOURCE_INFO, PROJECTS_INFO, NEXT_UPDATE
     first_call = VIDEOS_INFO is None or APPS_INFO is None or OPEN_SOURCE_INFO is None or PROJECTS_INFO is None
@@ -96,17 +97,31 @@ def get_videos_info():
 
 
 def get_apps_info():
-    apps_info = dict()
-    try:
-        google_play_store_scraper = PlayStoreScraper()
-        app_ids = google_play_store_scraper.get_app_ids_for_developer("Soumio", country="us", lang="en")
-        for app_id in app_ids:
-            app_info = google_play_store_scraper.get_app_details(app_id, country="us", lang="en")
-            if 'link' in app_info and 'title' in app_info and 'icon_link' in app_info:
-                apps_info[app_info['title']] = {'link': app_info['link'], 'img': app_info['icon_link'], 'type': 'App'}
-    except PlayStoreException as e:
-        log(f"Can't get app details: {e}. Details: {traceback.print_exc()}")
-    return apps_info
+    # for some reason, API not working properly. Using static data below for now
+    return {
+        'PhotoAI - Mobile Image Classification': {
+            'img': 'https://play-lh.googleusercontent.com/ugR4F_fhjPHPIa3I0FMcYuEHFQv_mix3c1I6pRJ40KIbIPmN0Od24_sPYKBCs9cZiXqI=w480-h960-rw',
+            'link': 'https://play.google.com/store/apps/details?id=com.soumio.mikes.photoai&hl=en&gl=us',
+            'type': 'App'
+        },
+        'Mismatch Run': {
+            'img': 'https://play-lh.googleusercontent.com/D-BtCfsciNOmO5VXXe_VJnuKJhCuWQAwA-P-xK_OJWR_17R5YB13dUrdYTy4e6WhhGjP=w480-h960-rw',
+            'link': 'https://play.google.com/store/apps/details?id=com.SoumIO.Mismatch_Run&hl=en&gl=us',
+            'type': 'App'
+        }
+    }
+    # apps_info = dict()
+    # try:
+    #     google_play_store_scraper = PlayStoreScraper()
+    #     app_ids = google_play_store_scraper.get_app_ids_for_developer("Soumio", country="us", lang="en")
+    #     for app_id in app_ids:
+    #         app_info = google_play_store_scraper.get_app_details(app_id, country="us", lang="en")
+    #         log(app_info)
+    #         if 'link' in app_info and 'title' in app_info and 'icon_link' in app_info:
+    #             apps_info[app_info['title']] = {'link': app_info['link'], 'img': app_info['icon_link'], 'type': 'App'}
+    # except PlayStoreException as e:
+    #     log(f"Can't get app details: {e}. Details: {traceback.print_exc()}")
+    # return apps_info
 
 
 def get_open_source_info():

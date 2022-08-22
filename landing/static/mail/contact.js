@@ -13,6 +13,7 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+var csrftoken = getCookie('csrftoken');
 
 $(function () {
 
@@ -38,7 +39,7 @@ $(function () {
                     email: email,
                     subject: subject,
                     message: message,
-                    csrfmiddlewaretoken: getCookie('csrftoken')
+                    csrfmiddlewaretoken: csrftoken
                 },
                 cache: false,
                 success: function () {
