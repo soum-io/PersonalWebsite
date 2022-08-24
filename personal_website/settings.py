@@ -27,6 +27,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'soumio.herokuapp.com']
 
+CSRF_USE_SESSIONS = False
+CSRF_COOKIE_HTTPONLY = False
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
