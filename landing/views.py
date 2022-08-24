@@ -2,15 +2,13 @@ import datetime
 import json
 import logging
 import re
-import traceback
 from urllib.request import urlopen
 
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import requires_csrf_token
 from github import Github
-from google_play_scraper.scraper import PlayStoreScraper
-from google_play_scraper.util import PlayStoreException
 
 from landing.constants import *
 
@@ -21,6 +19,7 @@ PROJECTS_INFO = None
 NEXT_UPDATE = None
 
 
+@requires_csrf_token
 def home(request):
     check_if_project_info_update_required()
     return render(request, 'landing/home.html', {'landing_page': True,
