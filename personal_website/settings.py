@@ -25,10 +25,7 @@ SECRET_KEY = os.environ.get('PERSONAL_WEBSITE_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'soumio.herokuapp.com']
-
-CSRF_USE_SESSIONS = False
-CSRF_COOKIE_HTTPONLY = False
+ALLOWED_HOSTS = ['127.0.0.1', 'https://soumio.herokuapp.com', 'http://soumio.herokuapp.com', 'soumio.herokuapp.com']
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
